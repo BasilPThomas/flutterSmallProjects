@@ -1,4 +1,4 @@
-import 'package:mi_card/comp/story.dart';
+import 'package:mi_card/destini/story.dart';
 
 class StoryBrain {
 

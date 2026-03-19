@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mi_card/comp/quizBrain.dart';
+import 'package:mi_card/quizzler/questionBrain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Quizzler extends StatefulWidget {

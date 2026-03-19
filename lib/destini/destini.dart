@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'comp/storyBrain.dart';
+import 'storyBrain.dart';
 
 class Destini extends StatefulWidget {
   const Destini({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mi_card/comp/question.dart';
+import 'package:mi_card/quizzler/question.dart';
 
 class QuizBrain {
   int _questionNumber = 0;
