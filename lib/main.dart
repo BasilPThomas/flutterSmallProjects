@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'bmiCalculator/bmiCalculator.dart';
+import 'bmiCalculator/resultPage.dart';
 
 void main() => runApp( PageRouter() );
 
@@ -8,12 +9,18 @@ class PageRouter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-        theme: ThemeData.dark().copyWith(
-          primaryColor: Color(0xFF0A0E23),
-          scaffoldBackgroundColor: Color(0xFF0A0E23),
-        ),
-        home: BMICalculator()
+    return  SafeArea(
+      child: MaterialApp(
+          theme: ThemeData.dark().copyWith(
+            primaryColor: Color(0xFF0A0E23),
+            scaffoldBackgroundColor: Color(0xFF0A0E23),
+          ),
+          // routes: {
+          //   '/': (context) => BMICalculator(),
+          //   '/first': (context) => ResultPage()
+          // },
+          home: BMICalculator()
+      ),
     );
   }
 }
