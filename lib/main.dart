@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'bmiCalculator/bmiCalculator.dart';
-import 'bmiCalculator/resultPage.dart';
+import 'cilma/screens/loading_screen.dart';
 
-void main() => runApp( PageRouter() );
+void main() => runApp(PageRouter());
 
 class PageRouter extends StatelessWidget {
   const PageRouter({super.key});
@@ -15,11 +14,7 @@ class PageRouter extends StatelessWidget {
             primaryColor: Color(0xFF0A0E23),
             scaffoldBackgroundColor: Color(0xFF0A0E23),
           ),
-          // routes: {
-          //   '/': (context) => BMICalculator(),
-          //   '/first': (context) => ResultPage()
-          // },
-          home: BMICalculator()
+          home: LoadingScreen()
       ),
     );
   }
