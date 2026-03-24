@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import '../services/location.dart';
+import '../services/networking.dart';
+import 'location_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -8,39 +11,22 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-  final LocationSettings locationSettings = LocationSettings(
-    accuracy: LocationAccuracy.low,
-    distanceFilter: 100,
-  );
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
+  }
 
-  void getCurrentLocation() async {
-    LocationPermission permission;
+  void getLocation() async {
+    Location location = Location();
+    await location.getCurrentLocation();
+    NetworkHelper networkHelper = NetworkHelper("https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric");
 
-    // 1. Check current permission
-    permission = await Geolocator.checkPermission();
+    var weatherData = await networkHelper.getData();
 
-    // 2. Request if denied
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-    }
-
-    // 3. Handle denied cases
-    if (permission == LocationPermission.denied) {
-      print('Permission denied');
-      return;
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      print('Permission permanently denied');
-      await Geolocator.openAppSettings(); // optional
-      return;
-    }
-
-    // 4. NOW get location ✅
-    Position position = await Geolocator.getCurrentPosition(
-      locationSettings: locationSettings,
-    );
-    print(position);
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LocationScreen(locationWeather: weatherData,);
+    }));
   }
 
 
@@ -48,14 +34,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          color: Colors.blue,
-          child: TextButton(
-            onPressed: () {
-              getCurrentLocation();
-            },
-            child: Text('Get Location'),
-          ),
+        child: SpinKitRotatingCircle(
+          color: Colors.white,
+          size: 100.0,
+          duration: Duration(seconds: 10),
         ),
       ),
     );
