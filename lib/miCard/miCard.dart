@@ -76,6 +76,6 @@ class MiCard extends StatelessWidget {
             )
         ),
       ),
-    );;
+    );
   }
 }
