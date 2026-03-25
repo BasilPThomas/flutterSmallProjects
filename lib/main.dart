@@ -21,9 +21,9 @@ class PageRouter extends StatelessWidget {
         initialRoute: WelcomeScreen.routeName,
         routes: {
           WelcomeScreen.routeName: (context) => WelcomeScreen(),
-          '/login_screen': (context) => LoginScreen(),
-          '/registration_screen': (context) => RegistrationScreen(),
-          '/chat_screen': (context) => ChatScreen(),
+          LoginScreen.routeName: (context) => LoginScreen(),
+          RegistrationScreen.routeName: (context) => RegistrationScreen(),
+          ChatScreen.routeName: (context) => ChatScreen(),
         },
       ),
     );

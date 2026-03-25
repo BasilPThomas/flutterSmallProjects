@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 
 class ChatScreen extends StatefulWidget {
+
+  static String routeName = 'chat_screen';
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -15,13 +17,19 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: Icon(Icons.close,color: Colors.black,),
               onPressed: () {
                 //Implement logout functionality
               }),
         ],
-        title: Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+        title: Text(
+            '⚡️Chat',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.yellowAccent,
       ),
       body: SafeArea(
         child: Column(
