@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'cilma/screens/loading_screen.dart';
+import 'bitcoinTicker/price_screen.dart';
 
 void main() => runApp(PageRouter());
 
@@ -14,7 +14,7 @@ class PageRouter extends StatelessWidget {
             primaryColor: Color(0xFF0A0E23),
             scaffoldBackgroundColor: Color(0xFF0A0E23),
           ),
-          home: LoadingScreen()
+          home: PriceScreen()
       ),
     );
   }
