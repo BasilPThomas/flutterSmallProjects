@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
+import 'cryptoCard.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -12,10 +13,10 @@ class _PriceScreenState extends State<PriceScreen> {
 
   String selectedCurrency = 'USD';
 
-  DropdownButton<String> androidDropDownButton(){
+  DropdownButton<String> androidDropDownButton() {
     List<DropdownMenuItem<String>> dropdownItems = [];
 
-    for(String currency in currenciesList) {
+    for (String currency in currenciesList) {
       var newITem = DropdownMenuItem(
         child: Text(
           currency,
@@ -42,7 +43,7 @@ class _PriceScreenState extends State<PriceScreen> {
   CupertinoPicker iOSDropPicker() {
     List<Text> pickerItems = [];
 
-    for(String crypto in currenciesList) {
+    for (String crypto in currenciesList) {
       pickerItems.add(Text(crypto, style: TextStyle(color: Colors.black),));
     }
     return CupertinoPicker(
@@ -55,9 +56,48 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void getCryptoList() {
-    for(String crypto in cryptoList) {
+    for (String crypto in cryptoList) {
       print(crypto);
     }
+  }
+
+  Map<String, String> coinValues = {};
+  bool isWaiting = false;
+
+  void getData() async {
+    isWaiting = true;
+    try {
+      var data = await CoinData().getCoinData(selectedCurrency);
+      isWaiting = false;
+      setState(() {
+        coinValues = data;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Column makeCards() {
+    List<CryptoCard> cryptoCards = [];
+    for (String crypto in cryptoList) {
+      cryptoCards.add(
+        CryptoCard(
+          crypto,
+          selectedCurrency,
+          isWaiting ? '?' : coinValues[crypto].toString(),
+        ),
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: cryptoCards,
+    );
   }
 
   @override
@@ -65,7 +105,7 @@ class _PriceScreenState extends State<PriceScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            '🤑 Coin Ticker',
+          '🤑 Coin Ticker',
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
@@ -77,28 +117,7 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.yellow,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-                child: Text(
-                  '1 BTC = ? USD',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          makeCards(),
           Container(
             height: 150.0,
             alignment: Alignment.center,
