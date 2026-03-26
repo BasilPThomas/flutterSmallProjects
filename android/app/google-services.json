@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "72407345742",
+    "project_id": "flash-chat-de2a7",
+    "storage_bucket": "flash-chat-de2a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72407345742:android:61239f21195038c17f711f",
+        "android_client_info": {
+          "package_name": "co.basil.sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCZkuWPZf7JfYdZm35jQ6kY8f9vOGdb-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

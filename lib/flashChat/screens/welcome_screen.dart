@@ -1,19 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:mi_card/flashChat/screens/registration_screen.dart';
+import '../components/roundButton.dart';
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
-
   static String routeName = 'welcome_screen';
-
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
+
+  late AnimationController controller;
+  late Animation animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController( duration: Duration(seconds: 5), vsync: this,);
+    animation = ColorTween(begin: Colors.yellow, end: Color(0xFF0A0E23)).animate(controller);
+    controller.forward();
+    controller.addListener((){
+      setState(() {});
+      // print(controller.value);
+    });
+  }
+
+ @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -34,55 +56,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   'Flash Chat',
                   style: TextStyle(
                     fontSize: 45.0,
+                    color: Colors.white,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
               ],
             ),
             SizedBox( height: 48.0,),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.yellow,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.routeName);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+            RoundButton(
+                (){Navigator.pushNamed(context, LoginScreen.routeName);},
+                'Log In',
+                Colors.yellow,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.yellowAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.routeName);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+            RoundButton(
+              (){Navigator.pushNamed(context, RegistrationScreen.routeName);},
+              'Register',
+              Colors.yellowAccent,
             ),
           ],
         ),
