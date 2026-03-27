@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/roundButton.dart';
 import '../constants.dart';
 import 'chat_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static String routeName = 'registration_screen';
@@ -10,6 +11,11 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+
+  late String email;
+  late String password;
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +35,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             SizedBox( height: 48.0, ),
             TextField(
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.center,
               onChanged: (value) {
-                //Do something with the user input.
+                email = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your email',
@@ -38,8 +46,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             SizedBox( height: 8.0, ),
             TextField(
+              textAlign: TextAlign.center,
+              obscureText: true,
               onChanged: (value) {
-                //Do something with the user input.
+                password = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your password',
@@ -47,7 +57,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             SizedBox( height: 24.0, ),
             RoundButton(
-                  (){},
+                  () async {
+                    try {
+                      final user = await _auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
+                      if (user != null) {
+                        Navigator.pushNamed(context, ChatScreen.routeName);
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
               'Register',
               Colors.yellowAccent,
             ),

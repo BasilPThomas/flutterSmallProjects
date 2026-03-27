@@ -3,8 +3,13 @@ import 'flashChat/screens/chat_screen.dart';
 import 'flashChat/screens/login_screen.dart';
 import 'flashChat/screens/registration_screen.dart';
 import 'flashChat/screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(PageRouter());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(PageRouter());
+}
 
 class PageRouter extends StatelessWidget {
   const PageRouter({super.key});
