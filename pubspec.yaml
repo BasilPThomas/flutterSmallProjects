@@ -15,7 +15,6 @@ dependencies:
   geolocator: ^14.0.2
   http: ^1.6.0
   flutter_spinkit: ^5.2.2
-#  firebase_core: ^4.6.0
   firebase_auth: ^6.3.0
   cloud_firestore: ^6.2.0
 
