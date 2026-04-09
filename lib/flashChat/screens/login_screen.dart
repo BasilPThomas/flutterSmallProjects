@@ -6,12 +6,12 @@ import 'chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = 'login_screen';
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   late String email;
   late String password;
   final _auth = FirebaseAuth.instance;
@@ -35,7 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox( height: 48.0,),
+            SizedBox(
+              height: 48.0,
+            ),
             TextField(
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
@@ -46,7 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintText: 'Enter your email',
               ),
             ),
-            SizedBox( height: 8.0,),
+            SizedBox(
+              height: 8.0,
+            ),
             TextField(
               obscureText: true,
               textAlign: TextAlign.center,
@@ -57,20 +61,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintText: 'Enter your password',
               ),
             ),
-            SizedBox( height: 24.0,),
+            SizedBox(
+              height: 24.0,
+            ),
             RoundButton(
-                  (){
-                    try{
-                      final user = _auth.signInWithEmailAndPassword(email: email, password: password);
-                      if (user != null) {
-                        Navigator.pushNamed(context, ChatScreen.routeName);
-                      }
-                    } catch(e){
-                      print(e);
-                    }
-                  },
-                  'Log In',
-                  Colors.yellow,
+              () {
+                try {
+                  final user = _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+                  if (user != null) {
+                    Navigator.pushNamed(context, ChatScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                }
+              },
+              'Log In',
+              Colors.yellow,
             ),
           ],
         ),

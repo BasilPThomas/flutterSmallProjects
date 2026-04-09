@@ -6,12 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static String routeName = 'registration_screen';
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-
   late String email;
   late String password;
   final _auth = FirebaseAuth.instance;
@@ -35,7 +35,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
             ),
-            SizedBox( height: 48.0, ),
+            SizedBox(
+              height: 48.0,
+            ),
             TextField(
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
@@ -46,7 +48,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 hintText: 'Enter your email',
               ),
             ),
-            SizedBox( height: 8.0, ),
+            SizedBox(
+              height: 8.0,
+            ),
             TextField(
               textAlign: TextAlign.center,
               obscureText: true,
@@ -57,19 +61,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 hintText: 'Enter your password',
               ),
             ),
-            SizedBox( height: 24.0, ),
+            SizedBox(
+              height: 24.0,
+            ),
             RoundButton(
-                  () async {
-                    try {
-                      final user = await _auth.createUserWithEmailAndPassword(
-                          email: email, password: password);
-                      if (user != null) {
-                        Navigator.pushNamed(context, ChatScreen.routeName);
-                      }
-                    } catch (e) {
-                      print(e);
-                    }
-                  },
+              () async {
+                try {
+                  final user = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  if (user != null) {
+                    Navigator.pushNamed(context, ChatScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                }
+              },
               'Register',
               Colors.yellowAccent,
             ),

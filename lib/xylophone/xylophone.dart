@@ -13,7 +13,9 @@ class XylophoneApp extends StatelessWidget {
             final player = AudioPlayer();
             player.play(AssetSource('sounds/note$soundNumber.wav'));
           },
-          child: Icon(Icons.ramp_left,),
+          child: Icon(
+            Icons.ramp_left,
+          ),
         ),
       ),
     );
@@ -25,21 +27,19 @@ class XylophoneApp extends StatelessWidget {
       backgroundColor: Colors.black,
       body: SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                playSoundContainer(Colors.red,1),
-                playSoundContainer(Colors.orange,2),
-                playSoundContainer(Colors.yellow,3),
-                playSoundContainer(Colors.teal,4),
-                playSoundContainer(Colors.blue,5),
-                playSoundContainer(Colors.purple,6),
-                playSoundContainer(Colors.lightGreen,7),
-              ],
-            )
-          )
-      ),
+              child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          playSoundContainer(Colors.red, 1),
+          playSoundContainer(Colors.orange, 2),
+          playSoundContainer(Colors.yellow, 3),
+          playSoundContainer(Colors.teal, 4),
+          playSoundContainer(Colors.blue, 5),
+          playSoundContainer(Colors.purple, 6),
+          playSoundContainer(Colors.lightGreen, 7),
+        ],
+      ))),
     );
   }
 }

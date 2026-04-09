@@ -10,12 +10,12 @@ final messageTextController = TextEditingController();
 
 class ChatScreen extends StatefulWidget {
   static String routeName = 'chat_screen';
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-
   late String messageText;
 
   void getCurrentUser() async {
@@ -25,7 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
         loggedInUser = user;
         print(user.email);
       }
-    } catch(e){
+    } catch (e) {
       print(e);
     }
   }
@@ -43,7 +43,10 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close,color: Colors.black,),
+              icon: Icon(
+                Icons.close,
+                color: Colors.black,
+              ),
               onPressed: () {
                 _auth.signOut();
                 Navigator.pop(context);
@@ -51,7 +54,7 @@ class _ChatScreenState extends State<ChatScreen> {
               }),
         ],
         title: Text(
-            '⚡️Chat',
+          '⚡️Chat',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -111,7 +114,6 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class MessageBuilder extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -136,9 +138,7 @@ class MessageBuilder extends StatelessWidget {
             final messageSender = data['sender'] ?? 'Unknown';
 
             final currentUser = loggedInUser?.email ?? 'Unknown';
-            if(currentUser == messageSender){
-
-            }
+            if (currentUser == messageSender) {}
 
             final messageWidget = MessageBubble(
               isMe: currentUser == messageSender,
@@ -160,10 +160,9 @@ class MessageBuilder extends StatelessWidget {
   }
 }
 
-
 class MessageBubble extends StatelessWidget {
-
   MessageBubble({required this.sender, required this.text, required this.isMe});
+
   String sender;
   String text;
   bool isMe;
@@ -173,36 +172,31 @@ class MessageBubble extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(15.0),
       child: Column(
-        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(
-            '@'+'$sender',
-            style: TextStyle(
-              fontSize: 10.0,
-              fontWeight: FontWeight.w400
-            )
-          ),
+          Text('@' + '$sender',
+              style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400)),
           Material(
             elevation: 5.0,
-            borderRadius: isMe ? BorderRadius.only(
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30)
-            ): BorderRadius.only(
-                topRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30)
-            ),
-            color: isMe ? Colors.yellow: Colors.white,
+            borderRadius: isMe
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30))
+                : BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
+            color: isMe ? Colors.yellow : Colors.white,
             child: Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                  text,
-                      style: TextStyle(
-                        color: isMe ? Colors.green : Colors.black,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold
-                ),
+                text,
+                style: TextStyle(
+                    color: isMe ? Colors.green : Colors.black,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -211,4 +205,3 @@ class MessageBubble extends StatelessWidget {
     );
   }
 }
-

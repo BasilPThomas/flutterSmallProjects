@@ -5,28 +5,33 @@ import 'login_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String routeName = 'welcome_screen';
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
-
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController( duration: Duration(seconds: 2), vsync: this,);
-    animation = ColorTween(begin: Colors.yellow, end: Color(0xFF0A0E23)).animate(controller);
+    controller = AnimationController(
+      duration: Duration(seconds: 2),
+      vsync: this,
+    );
+    animation = ColorTween(begin: Colors.yellow, end: Color(0xFF0A0E23))
+        .animate(controller);
     controller.forward();
-    controller.addListener((){
+    controller.addListener(() {
       setState(() {});
       // print(controller.value);
     });
   }
 
- @override
+  @override
   void dispose() {
     super.dispose();
     controller.dispose();
@@ -62,14 +67,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 ),
               ],
             ),
-            SizedBox( height: 48.0,),
-            RoundButton(
-                (){Navigator.pushNamed(context, LoginScreen.routeName);},
-                'Log In',
-                Colors.yellow,
+            SizedBox(
+              height: 48.0,
             ),
             RoundButton(
-              (){Navigator.pushNamed(context, RegistrationScreen.routeName);},
+              () {
+                Navigator.pushNamed(context, LoginScreen.routeName);
+              },
+              'Log In',
+              Colors.yellow,
+            ),
+            RoundButton(
+              () {
+                Navigator.pushNamed(context, RegistrationScreen.routeName);
+              },
               'Register',
               Colors.yellowAccent,
             ),
