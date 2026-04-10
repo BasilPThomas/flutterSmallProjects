@@ -10,7 +10,6 @@ class Destini extends StatefulWidget {
 }
 
 class _DestiniState extends State<Destini> {
-
   StoryBrain storyBrain = StoryBrain();
 
   @override
@@ -21,7 +20,8 @@ class _DestiniState extends State<Destini> {
           image: DecorationImage(
             image: AssetImage('assets/images/background.png'),
             fit: BoxFit.cover,
-          ),),
+          ),
+        ),
         padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
@@ -54,7 +54,9 @@ class _DestiniState extends State<Destini> {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(
+                height: 20.0,
+              ),
               Container(
                 color: Colors.blue,
                 child: Visibility(

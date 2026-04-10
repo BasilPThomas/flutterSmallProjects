@@ -4,7 +4,6 @@ import 'component.dart';
 import 'constants.dart';
 
 class ResultPage extends StatelessWidget {
-
   ResultPage(this.bmiResult, this.resultText, this.interpretation);
 
   final String bmiResult;
@@ -23,10 +22,7 @@ class ResultPage extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: Text(
                 "Your Result",
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold
-                ),
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -48,20 +44,17 @@ class ResultPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green
-                    ),
+                        color: Colors.green),
                   ),
                   Text(
                     bmiResult,
-                    style: TextStyle(
-                        fontSize: 100,
-                        fontWeight: FontWeight.bold
-                    ),
+                    style:
+                        TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Text(
-                        interpretation,
+                      interpretation,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w300,
@@ -71,11 +64,15 @@ class ResultPage extends StatelessWidget {
                   )
                 ],
               ),
-
             ),
           ),
           BottomButton(
-            () { Navigator.push(context, MaterialPageRoute(builder: (context) => BMICalculator()),);},
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BMICalculator()),
+              );
+            },
             "RE-CALCULATE",
           )
         ],

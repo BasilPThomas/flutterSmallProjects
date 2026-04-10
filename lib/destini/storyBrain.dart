@@ -1,7 +1,6 @@
 import 'package:mi_card/destini/story.dart';
 
 class StoryBrain {
-
   int _storyNumber = 0;
 
   List<Story> _storyData = [
@@ -31,15 +30,15 @@ class StoryBrain {
         '')
   ];
 
-  String getStoryTitle (){
+  String getStoryTitle() {
     return _storyData[_storyNumber].storyTitle;
   }
 
-  String getChoice1 (){
+  String getChoice1() {
     return _storyData[_storyNumber].choice1;
   }
 
-  String getChoice2 (){
+  String getChoice2() {
     return _storyData[_storyNumber].choice2;
   }
 
@@ -68,10 +67,8 @@ class StoryBrain {
   bool buttonShouldBeVisible() {
     if (_storyNumber == 0 || _storyNumber == 1 || _storyNumber == 2) {
       return true;
-  } else {
+    } else {
       return false;
     }
   }
-
 }
-

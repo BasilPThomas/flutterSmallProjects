@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard( {required this.colour,  required this.cardChild, required this.onPress,} );
+  ReusableCard({
+    required this.colour,
+    required this.cardChild,
+    required this.onPress,
+  });
+
   final Color colour;
   final Widget cardChild;
   final VoidCallback onPress;
@@ -26,6 +31,7 @@ class ReusableCard extends StatelessWidget {
 
 class IconContent extends StatelessWidget {
   IconContent(this.icon, this.label);
+
   final IconData icon;
   final String label;
 
@@ -39,15 +45,14 @@ class IconContent extends StatelessWidget {
             icon: Icon(
               icon,
               size: 80,
-            )
+            )),
+        SizedBox(
+          height: 10,
         ),
-        SizedBox(height: 10,),
-        Text(
-            label,
+        Text(label,
             style: TextStyle(
               fontSize: 20,
-            )
-        )
+            ))
       ],
     );
   }
@@ -62,10 +67,7 @@ class RoundIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      constraints: BoxConstraints.tightFor(
-          width: 56,
-          height: 56
-      ),
+      constraints: BoxConstraints.tightFor(width: 56, height: 56),
       elevation: 0,
       onPressed: onPressed,
       shape: CircleBorder(),
@@ -93,10 +95,7 @@ class BottomButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
         color: kBottomContainerColour,

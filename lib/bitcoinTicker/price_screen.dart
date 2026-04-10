@@ -10,7 +10,6 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-
   String selectedCurrency = 'USD';
 
   DropdownButton<String> androidDropDownButton() {
@@ -44,7 +43,10 @@ class _PriceScreenState extends State<PriceScreen> {
     List<Text> pickerItems = [];
 
     for (String crypto in currenciesList) {
-      pickerItems.add(Text(crypto, style: TextStyle(color: Colors.black),));
+      pickerItems.add(Text(
+        crypto,
+        style: TextStyle(color: Colors.black),
+      ));
     }
     return CupertinoPicker(
       itemExtent: 30,

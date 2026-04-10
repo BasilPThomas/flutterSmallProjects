@@ -39,12 +39,8 @@ class Location {
       );
       latitude = position.latitude;
       longitude = position.longitude;
-    }
-    catch(e)
-    {
+    } catch (e) {
       print(e);
     }
   }
-
 }
-

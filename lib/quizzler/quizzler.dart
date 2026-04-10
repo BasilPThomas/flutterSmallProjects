@@ -10,7 +10,6 @@ class Quizzler extends StatefulWidget {
 }
 
 class _QuizzlerState extends State<Quizzler> {
-
   QuizBrain quizBrain = QuizBrain();
 
   void checkAnswer(bool userPickedAnswer) {
@@ -24,21 +23,24 @@ class _QuizzlerState extends State<Quizzler> {
         ).show();
         quizBrain.reset();
         quizBrain.scoreKeeper = [];
-      }
-      else {
+      } else {
         if (userPickedAnswer == correctAnswer) {
-          quizBrain.scoreKeeper.add(Icon(Icons.check, color: Colors.green,));
+          quizBrain.scoreKeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
           // print("User got it right");
         } else {
-          quizBrain.scoreKeeper.add(Icon(Icons.close, color: Colors.red,));
+          quizBrain.scoreKeeper.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
           // print("User got it wrong");
         }
         quizBrain.nextQuestion();
       }
-    }
-    );
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class _QuizzlerState extends State<Quizzler> {
                     padding: EdgeInsets.all(10.0),
                     child: Center(
                       child: Text(
-                       quizBrain.getQuestionText(),
+                        quizBrain.getQuestionText(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 25.0,
@@ -73,14 +75,16 @@ class _QuizzlerState extends State<Quizzler> {
                     child: Container(
                       color: Colors.lightGreen,
                       child: TextButton(
-                        child:  Text(
+                        child: Text(
                           'True',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
                           ),
                         ),
-                        onPressed: () {checkAnswer(true);},
+                        onPressed: () {
+                          checkAnswer(true);
+                        },
                       ),
                     ),
                   ),
@@ -98,18 +102,19 @@ class _QuizzlerState extends State<Quizzler> {
                             color: Colors.white,
                           ),
                         ),
-                        onPressed: () {checkAnswer(false);},
+                        onPressed: () {
+                          checkAnswer(false);
+                        },
                       ),
                     ),
                   ),
                 ),
-                Row(children: quizBrain.scoreKeeper,)
-            ],
+                Row(
+                  children: quizBrain.scoreKeeper,
+                )
+              ],
+            ),
           ),
-        ),
-      )
-    );
+        ));
   }
 }
-
-

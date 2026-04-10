@@ -7,7 +7,6 @@ class CityScreen extends StatefulWidget {
 }
 
 class _CityScreenState extends State<CityScreen> {
-
   String cityName = '';
 
   @override
